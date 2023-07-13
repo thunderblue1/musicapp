@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'musicapp';
+  constructor(private router: Router) {
+  }
+  title = 'My Music Collection';
+  version = "1.0";
+  displayArtistList() {
+    this.router.navigate(['list-artists'],{queryParams: {data: new Date()}})
+  }
+  displayVersion() {
+    alert(this.version);
+  }
 }
