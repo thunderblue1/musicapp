@@ -12,7 +12,10 @@ export class AppComponent {
   title = 'My Music Collection';
   version = "1.0";
   displayArtistList() {
-    this.router.navigate(['list-artists'],{queryParams: {data: new Date()}})
+    this.router.navigate(['list-artists'])
+  }
+  public editClicked() {
+    this.router.navigate(['edit-album']);
   }
   displayVersion() {
     alert(this.version);

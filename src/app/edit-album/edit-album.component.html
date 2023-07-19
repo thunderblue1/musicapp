@@ -1,1 +1,53 @@
-<p>edit-album works!</p>
+<div align="center" style="margin-left:50px;margin-right:50px" *ngIf="!wasSubmitted">
+  <p>{{ album.artist }}</p>
+  <form (ngSubmit)="onSubmit()" #createForm="ngForm">
+      <div class="form-group">
+        <label for="artist">Artist</label>
+        <input id="artist" type="text" class="form-control" aria-describedby="helpArtist" placeholder="Enter the name of the Artist" required [(ngModel)]="album.artist" name="artist">
+      </div>
+      <div class="form-group">
+          <label for="album">Album</label>
+          <input id="album" type="text" class="form-control" aria-describedby="helpAlbum" placeholder="Enter the name of the Album" required [(ngModel)]="album.title" name="title">
+        </div>
+      <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" rows="3" class="form-control" aria-describedby="helpDescription" placeholder="Enter the description of the Album" required [(ngModel)]="album.description" name="description"></textarea>
+       </div>
+      <div class="form-group">
+          <label for="year">Year</label>
+          <input id="year" type="text" class="form-control" aria-describedby="helpYear" placeholder="Enter the year of the Album" required [(ngModel)]="album.year" name="year">
+      </div>
+      <div class="form-group">
+          <label for="image">Image Filename</label>
+          <input id="image" type="text" class="form-control" aria-describedby="helpImage" placeholder="Enter the image filename for the Album" [(ngModel)]="album.image" name="image">
+      </div>
+      <div class="form-group">
+          <label for="tracks">Tracks</label>
+          <textarea id="tracks" rows="3" class="form-control" aria-describedby="helpTracks" placeholder="Enter each track followed by a return key for the Album" required [(ngModel)]="tracksRaw" name="tracks"></textarea>
+       </div>
+
+      <!--
+        If I had more time then I would create a delete property for each track.
+        Then I would allow a track to be added with an add button and when you click on the button it would open a modal to edit the track.
+        tracks with delete=true would be deleted and tracks with newTrack=true would be added.  All of the other tracks would be updated.
+        I was told to reuse create component and that is what I did.
+
+        <button class="list-group-item" style="margin: 7px; padding:3px; background-color:lightblue" active
+        *ngFor="let track of album.tracks">
+          <table align="center">
+            <tr>
+              <td width="20%"><img src="{{ album.image }}" width="50px" height="50px"/></td>
+              <td style="min-width: 200px; max-width: 50%;">{{ track.number }}. {{ track.title }}. {{track.video}}</td>
+              <textarea style="min-width:100px; max-width: 50%;">{{track.lyrics}}</textarea>
+            </tr>
+          </table>
+        </button>
+      -->
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+  <div  *ngIf="wasSubmitted">
+    Album was added successfully.
+  </div>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Artist } from '../models/artists.model';
 import { MusicServiceService } from '../service/music-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-list-artists',
@@ -9,18 +10,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./list-artists.component.css']
 })
 export class ListArtistsComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private service: MusicServiceService) {
+  constructor(private route: ActivatedRoute, private service: MusicServiceService,private router:Router) {
   }
   selectedArtist: Artist|null=null;
   artists: Artist[] = [];
   ngOnInit() {
-    this.route.queryParams.subscribe(params=> {
-      console.log("Getting data ...");
-      this.artists = this.service.getArtists();
-      this.selectedArtist = null;
+    console.log("Getting data ....");
+    this.service.getArtists((artists: Artist[])=>{
+      this.artists = artists;
+      console.log('this.artists',this.artists);
     });
   }
   onSelectArtist(artist: Artist) {
     this.selectedArtist = artist;
   }
+
 }

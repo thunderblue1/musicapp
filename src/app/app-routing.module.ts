@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'list-artists', component: ListArtistsComponent },
   { path: 'list-albums', component: ListAlbumsComponent },
   { path: 'display/:id', component: DisplayAlbumComponent },
-  { path: 'edit/:artist/:id', component: EditAlbumComponent },
+  { path: 'edit/:id', component: EditAlbumComponent },
   { path: 'delete/:artist/:id', component: DeleteAlbumComponent }
 ];
 
